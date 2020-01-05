@@ -15,6 +15,10 @@ else [download node package](https://nodejs.org/en/)
 
 In the project directory, you can run:
 
+### `npm install`
+
+To download the dependency packages in your local machine to run application 
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
