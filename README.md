@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), [Jest](https://github.com/facebook/jest).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app),[Jest](https://github.com/facebook/jest).
 
 ## Setting up 
 
@@ -9,9 +9,7 @@ node -v
 npm -v
 ```
 
-<br />>
-
-else [download the following package](https://nodejs.org/en/)
+else [download node package](https://nodejs.org/en/)
 
 ## Available Scripts
 
