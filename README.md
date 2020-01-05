@@ -1,4 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), [Jest](https://github.com/facebook/jest).
+
+## Setting up 
+
+Before running application, ensure the following command is valid:  
+
+```
+node -v
+npm -v
+```
+
+<br />>
+
+else [download the following package](https://nodejs.org/en/)
 
 ## Available Scripts
 
@@ -66,3 +79,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
