@@ -1,23 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app),[Jest](https://github.com/facebook/jest).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app),[Jest](https://github.com/facebook/jest), [ExpressJS](https://expressjs.com/), [mySQL](https://dev.mysql.com/doc/mysql-getting-started/en/).
 
 ## Setting up 
 
-Before running application, ensure the following command is valid:  
+Before running the application, ensure the following command produces valid output:  
 
 ```
 node -v
 npm -v
+mysql --help 
 ```
 
-else [download node package](https://nodejs.org/en/)
+else [download node package](https://nodejs.org/en/) <br />
+
+:warning: **You are required to _set up_ the database in _back-end/express.js_ ** :warning:
 
 ## Available Scripts
 
+Please run the above script in **front-end** and **back-end** folder. <br />
 In the project directory, you can run:
 
 ### `npm install`
 
-To download the dependency packages in your local machine to run application 
+To download the dependency packages in your local machine to run application. 
 
 ### `npm start`
 
@@ -31,6 +35,10 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm test`
+
+Runs test coverage on both front and back end. 
 
 ### `npm run build`
 
