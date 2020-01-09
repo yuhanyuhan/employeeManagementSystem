@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "antd/dist/antd.css";
-import { Input, Form, Button, Select, Row } from "antd";
+import { Input, Form, Button, Select, Row, notification } from "antd";
 
 const { Option } = Select;
 
 const AddUser = ({ form }) => {
-  const [details, setDetails] = useState({});
-  const [isRequired, setRequired] = useState(true)
-  const [rank, setRank] = useState("null")
+  const [isRequired, setRequired] = useState(true);
+  const [rank, setRank] = useState("null");
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    let isCancelled = false;
+    fetch("http://localhost:4000/get")
+      .then(response => response.json())
+      .then(response => {
+        if (!isCancelled) setUsers(response);
+      });
+    return () => (isCancelled = true);
+  }, [users]);
 
   const {
     getFieldDecorator,
@@ -22,26 +32,38 @@ const AddUser = ({ form }) => {
     validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
-        setDetails(values);
+        fetch("http://localhost:4000/post", {
+          method: "POST",
+          body: new URLSearchParams({
+            name: values.name,
+            jobTitle: values.jobTitle,
+            reportTo: values.reportTo
+          })
+        })
+          .then(response => {
+            const openNotificationWithIcon = type => {
+              notification[type]({
+                message: "New Class Added",
+                description: "Please check if details are correct"
+              });
+            };
+            openNotificationWithIcon("success");
+          })
+          .then(() => {
+            resetFields();
+          })
+          .catch(error => {
+            console.log(error);
+          });
       }
     });
   };
 
   const handleCEO = value => {
-    console.log(value)
     setRank(value);
-    (value === "ceo" ? setRequired(false) : setRequired(true))
+    value === "ceo" ? setRequired(false) : setRequired(true);
     setFieldsValue({
       reportTo: null
-    })
-  }
-
-  const handleSelectChange = value => {
-    console.log(value);
-    setFieldsValue({
-      jobTitle: `you are reporting to, ${
-        value === "ceo" ? null : value 
-      }!`
     });
   };
 
@@ -75,19 +97,25 @@ const AddUser = ({ form }) => {
         )}
       </Form.Item>
 
-      <Form.Item label="Reporting to"> 
+      <Form.Item label="Reporting to">
         {getFieldDecorator("reportTo", {
           rules: [
             {
               required: isRequired,
-              message: "Please select person reporting to!",
+              message: "Please select person reporting to!"
             }
           ]
-        })( 
-          <Select placeholder="Please select person-to-report" disabled={rank === "ceo" ? true : false}>
-            <Option value="red">Red</Option>
-            <Option value="green">Green</Option>
-            <Option value="blue">Blue</Option>
+        })(
+          <Select
+            placeholder="Please select person-to-report"
+            disabled={rank === "ceo" ? true : false}
+            showSearch
+          >
+            {users.map(el => (
+              <Option key={el.user_id} value={el.user_id}>
+                {el.emp_name}
+              </Option>
+            ))}
           </Select>
         )}
       </Form.Item>
@@ -98,10 +126,14 @@ const AddUser = ({ form }) => {
             Submit
           </Button>
 
-          <Button type="danger" onClick={()=>{resetFields()}}>
+          <Button
+            type="danger"
+            onClick={() => {
+              resetFields();
+            }}
+          >
             Clear
           </Button>
-
         </Row>
       </Form.Item>
     </Form>
