@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import AddUser from "./AddUser";
 import EditUser from "./EditUser";
-import TreeUser from "./TreeUser"; 
+// import TreeUser from "./TreeUser"; 
 
 import { Layout, Menu } from "antd";
 const { Sider, Content } = Layout;

@@ -214,7 +214,7 @@ class EditableTable extends React.Component {
 
   save(form, key, user_id) {
     form.validateFields((error, row) => {
-      console.log("row", row);
+      // console.log("row", row);
       if (error) {
         return;
       }
@@ -246,7 +246,6 @@ class EditableTable extends React.Component {
 
   edit(user_id) {
     this.setState({ editingKey: user_id });
-    console.log(user_id)
   }
 
   delete = (user_id, key) => {
@@ -266,8 +265,6 @@ class EditableTable extends React.Component {
           console.log(response);
           console.log(this.state.index);
           console.log(timeout);
-
-          // this.setState({ isLoading: false });
           fetch("http://localhost:4000/empList", {
             method: "GET"
           })
