@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app),[Jest](https://github.com/facebook/jest), [ExpressJS](https://expressjs.com/), [mySQL](https://dev.mysql.com/doc/mysql-getting-started/en/).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), [Jest](https://github.com/facebook/jest), [ExpressJS](https://expressjs.com/), [mySQL](https://dev.mysql.com/doc/mysql-getting-started/en/).
 
 ## Setting up 
 
@@ -10,9 +10,10 @@ npm -v
 mysql --help 
 ```
 
-else [download node package](https://nodejs.org/en/) <br />
+[download node](https://nodejs.org/en/) <br />
+[downoload mysql](https://dev.mysql.com/doc/mysql-getting-started/en/#mysql-getting-started-installing) <br />
 
-:warning: **You are required to _set up_ the database in _back-end/express.js_ ** :warning:
+::warning:: **You are required to _set up_ the database in _back-end/express.js_** ::warning::
 
 ## Available Scripts
 
@@ -26,7 +27,8 @@ To download the dependency packages in your local machine to run application.
 ### `npm start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view UI in the browser.
+Open [http://localhost:4000](http://localhost:3000) to view API in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
