@@ -11,7 +11,7 @@ mysql --help
 ```
 
 [download node](https://nodejs.org/en/) <br />
-[downoload mysql](https://dev.mysql.com/doc/mysql-getting-started/en/#mysql-getting-started-installing) <br />
+[download mysql](https://dev.mysql.com/doc/mysql-getting-started/en/#mysql-getting-started-installing) <br />
 
 :warning: **You are required to _set up_ the database in _back-end/express.js_** :warning:
 
