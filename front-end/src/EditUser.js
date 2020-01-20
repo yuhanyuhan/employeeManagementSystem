@@ -265,7 +265,7 @@ class EditableTable extends React.Component {
           console.log(response);
           console.log(this.state.index);
           console.log(timeout);
-          fetch("http://localhost:4000/empList", {
+          fetch("http://localhost:4000/get", {
             method: "GET"
           })
             .then(data => data.json())
