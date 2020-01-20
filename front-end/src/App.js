@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import AddUser from "./AddUser";
 import EditUser from "./EditUser";
-// import TreeUser from "./TreeUser"; 
 
 import { Layout, Menu } from "antd";
 const { Sider, Content } = Layout;
@@ -35,9 +34,6 @@ function App() {
                   <Link to="/view_users">Edit Users</Link>
                 </Menu.Item>
 
-                {/* <Menu.Item key="3">
-                  <Link to="/view_all">View Current Employee</Link>
-                </Menu.Item> */}
               </Menu>
             </Sider>
             <Layout>
@@ -50,10 +46,7 @@ function App() {
                   <Route exact path="/view_users">
                     <EditUser />
                   </Route>
-
-                  {/* <Route exact path="/view_all">
-                    <TreeUser />
-                  </Route> */}  
+                   
                 </Switch>
               </Content>
             </Layout>
