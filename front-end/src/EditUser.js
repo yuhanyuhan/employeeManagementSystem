@@ -76,7 +76,7 @@ class EditableTable extends React.Component {
         dataIndex: "isReportingTo",
         width: "25%",
         render: text => text.join(' > '), 
-        editable: true
+        editable: false
       },
       {
         title: "operation",
@@ -117,8 +117,7 @@ class EditableTable extends React.Component {
               </Button>
               {this.state.index[record.user_id] ? (
                 <Button type="link" disabled>
-                  {" "}
-                  Loading{" "}
+                  Loading
                 </Button>
               ) : (
                 <Button type="link" onClick={() => this.delete(record.user_id)}>
