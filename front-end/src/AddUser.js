@@ -59,7 +59,7 @@ const AddUser = ({ form }) => {
     });
   };
 
-  const handleCEO = value => {
+  const handleRank = value => {
     setRank(value);
     value === "ceo" ? setRequired(false) : setRequired(true);
     setFieldsValue({
@@ -88,7 +88,7 @@ const AddUser = ({ form }) => {
         })(
           <Select
             placeholder="Select a option and change input text above"
-            onChange={handleCEO}
+            onChange={handleRank}
           >
             <Option value="staff">Staff</Option>
             <Option value="manager">Manager</Option>
@@ -111,11 +111,19 @@ const AddUser = ({ form }) => {
             disabled={rank === "ceo" ? true : false}
             showSearch
           >
-            {users.map(el => (
-              <Option key={el.user_id} value={el.user_id}>
-                {el.emp_name}
-              </Option>
-            ))}
+            {rank !== "manager"
+              ? users.map(el => (
+                  <Option key={el.user_id} value={el.user_id}>
+                    {el.emp_name}
+                  </Option>
+                ))
+              : users
+                  .filter(user => user.job_title !== "staff")
+                  .map(el => (
+                    <Option key={el.user_id} value={el.user_id}>
+                      {el.emp_name}
+                    </Option>
+                  ))}
           </Select>
         )}
       </Form.Item>
