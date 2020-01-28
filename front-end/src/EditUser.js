@@ -1,6 +1,18 @@
 import React from "react";
-import { Button, Table, Input, InputNumber, Popconfirm, Form, Icon } from "antd";
-import Highlighter from 'react-highlight-words';
+import Highlighter from "react-highlight-words";
+
+import {
+  Button,
+  Table,
+  Input,
+  InputNumber,
+  Popconfirm,
+  Form,
+  Select,
+  Icon
+} from "antd";
+
+const { Option } = Select;
 
 const data = [];
 const EditableContext = React.createContext();
@@ -24,7 +36,7 @@ class EditableCell extends React.Component {
       children,
       ...restProps
     } = this.props;
-    
+
     return (
       <td {...restProps}>
         {editing ? (
@@ -62,20 +74,28 @@ class EditableTable extends React.Component {
         title: "user",
         dataIndex: "emp_name",
         width: "25%",
-        ...this.getColumnSearchProps('emp_name'),
+        ...this.getColumnSearchProps("emp_name"),
         editable: true
       },
       {
         title: "role",
         dataIndex: "job_title",
         width: "25%",
-        editable: true
+        render: (text, record) => {return (
+          <Select placeholder="Select a option and change input text above">
+            {/* <Option selected={record.job_title}>{record.job_title}</Option> */}
+            <Option value="staff">Staff</Option>
+            <Option value="manager">Manager</Option>
+            <Option value="ceo">CEO</Option>
+           </Select>
+        )},
+        editable: true, 
       },
       {
         title: "reporting to",
         dataIndex: "isReportingTo",
         width: "25%",
-        render: text => text.join(' > '), 
+        render: text => text.join(" < "),
         editable: false
       },
       {
@@ -131,8 +151,13 @@ class EditableTable extends React.Component {
     ];
   }
 
-   getColumnSearchProps = dataIndex => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+  getColumnSearchProps = dataIndex => ({
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters
+    }) => (
       <div style={{ padding: 8 }}>
         <Input
           ref={node => {
@@ -140,9 +165,13 @@ class EditableTable extends React.Component {
           }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{ width: 188, marginBottom: 8, display: 'block' }}
+          onChange={e =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
+          onPressEnter={() =>
+            this.handleSearch(selectedKeys, confirm, dataIndex)
+          }
+          style={{ width: 188, marginBottom: 8, display: "block" }}
         />
         <Button
           type="primary"
@@ -153,13 +182,17 @@ class EditableTable extends React.Component {
         >
           Search
         </Button>
-        <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+        <Button
+          onClick={() => this.handleReset(clearFilters)}
+          size="small"
+          style={{ width: 90 }}
+        >
           Reset
         </Button>
       </div>
     ),
     filterIcon: filtered => (
-      <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+      <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -174,27 +207,27 @@ class EditableTable extends React.Component {
     render: text =>
       this.state.searchedColumn === dataIndex ? (
         <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
           searchWords={[this.state.searchText]}
           autoEscape
           textToHighlight={text.toString()}
         />
       ) : (
         text
-      ),
+      )
   });
 
   handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     this.setState({
       searchText: selectedKeys[0],
-      searchedColumn: dataIndex,
+      searchedColumn: dataIndex
     });
   };
 
   handleReset = clearFilters => {
     clearFilters();
-    this.setState({ searchText: '' });
+    this.setState({ searchText: "" });
   };
 
   componentDidMount() {
@@ -237,7 +270,7 @@ class EditableTable extends React.Component {
         method: "PUT",
         body: new URLSearchParams({
           name: row.emp_name,
-          jobTitle: row.job_title 
+          jobTitle: row.job_title
         })
       });
     });
@@ -308,7 +341,7 @@ class EditableTable extends React.Component {
     return (
       <EditableContext.Provider value={this.props.form}>
         <Table
-          rowKey={record => record.user_id} 
+          rowKey={record => record.user_id}
           components={components}
           bordered
           dataSource={this.state.data}
