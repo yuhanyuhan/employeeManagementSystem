@@ -12,7 +12,7 @@ import {
   Icon
 } from "antd";
 
-const { Option } = Select;
+// const { Option } = Select;
 
 const data = [];
 const EditableContext = React.createContext();
@@ -81,14 +81,15 @@ class EditableTable extends React.Component {
         title: "role",
         dataIndex: "job_title",
         width: "25%",
-        render: (text, record) => {return (
-          <Select placeholder="Select a option and change input text above">
-            {/* <Option selected={record.job_title}>{record.job_title}</Option> */}
-            <Option value="staff">Staff</Option>
-            <Option value="manager">Manager</Option>
-            <Option value="ceo">CEO</Option>
-           </Select>
-        )},
+        // render: (text, record) => {return (
+        //   "job_title"
+        //   // <Select placeholder="Select a option and change input text above">
+        //   //   {/* <Option selected={record.job_title}>{record.job_title}</Option> */}
+        //   //   <Option value="staff">Staff</Option>
+        //   //   <Option value="manager">Manager</Option>
+        //   //   <Option value="ceo">CEO</Option>
+        //   //  </Select>
+        // )},
         editable: true, 
       },
       {

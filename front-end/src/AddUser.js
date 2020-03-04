@@ -25,7 +25,7 @@ const AddUser = ({ form }) => {
       .then(response => {
         if (!isCancelled) setUsers(response);
       });
-    return () => isCancelled = true;
+    return () => (isCancelled = true);
   }, []);
 
   const {

@@ -9,7 +9,7 @@ const { Sider, Content } = Layout;
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" role="App">
       <Layout style={{ background: "#fff" }}>
         <Router>
           <>
@@ -33,7 +33,6 @@ function App() {
                 <Menu.Item key="2">
                   <Link to="/view_users">Edit Users</Link>
                 </Menu.Item>
-
               </Menu>
             </Sider>
             <Layout>

@@ -4,31 +4,15 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 4000;
 
-// [PLEASE SET UP DATABASE ACCORDING SETTINGS MARKED IN ASTERISK]
-
 const knex = require("knex")({
   client: "mysql",
   connection: {
     host: "127.0.0.1",
     user: "root",
-    // password: "******",
-    // database: "*******"
+    password: "123Password!",
+    database: "lian_family",
   }
 });
-
-// [PLEASE RUN THE FOLLOWING COMMAND TO SET UP THE DATABASE IN MYSQL]
-
-// CREATE TABLE empList(
-//     user_id int AUTO_INCREMENT PRIMARY KEY, 
-//     emp_name VARCHAR(30), 
-//     job_title VARCHAR(10), 
-//     manager_id int, 
-//     CONSTRAINT fk_empList
-//     FOREIGN KEY (manager_id) 
-//         REFERENCES empList(user_id)
-//         ON DELETE CASCADE
-//         ON UPDATE CASCADE
-// )ENGINE=INNODB;
 
 const rawQuery = user_id => {
   return `SELECT T2.user_id, T2.emp_name
