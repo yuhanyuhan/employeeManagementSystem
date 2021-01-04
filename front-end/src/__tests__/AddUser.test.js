@@ -11,8 +11,10 @@ test('check that the option has 3 options', ()=> {
     expect(div.querySelector('input').type).toBe('text')
 })
 
-test('check if input value is CEO, reporting-to is disabled', ()=>{
-    const { getByText, getByRole } = render(<AddUser />);
+test('check if input value is CEO, reporting-to is disabled', async ()=>{
+    const { getByText, getByRole, findByText } = render(<AddUser />);
     fireEvent.click(getByText('Job Title')); 
-    expect(getByRole('span')).toHaveTitle('Manager'); 
+    const items = await findByText(/CEO /);
+    expect(items).toHaveLength(10);
+    // expect(getByRole('Option')).toHaveTitle('Manager'); 
 })
